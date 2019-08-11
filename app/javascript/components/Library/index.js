@@ -27,7 +27,7 @@ const Library = () => {
                 </button>
               ))}
 
-          {item !== null && (
+            {item !== null && (
               <UpdateItemForm
                 id={item.id}
                 initialTitle={item.title}
