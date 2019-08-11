@@ -1,5 +1,3 @@
-#import '../../fragments/Item.graphql'
-
 mutation UpdateItemMutation(
   $id: ID!
   $title: String!
@@ -14,6 +12,9 @@ mutation UpdateItemMutation(
   ) {
     item {
       ...ItemFragment
+    }
+    errors {
+      fullMessages
     }
   }
 }
