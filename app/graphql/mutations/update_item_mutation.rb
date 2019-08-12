@@ -1,7 +1,7 @@
 module Mutations
     class UpdateItemMutation < Mutations::BaseMutation
-      argument :attributes, Types::ItemAttributes, required: true      
       argument :id, ID, required: true
+      argument :attributes, Types::ItemAttributes, required: true      
 
   
       field :item, Types::ItemType, null: true
@@ -13,6 +13,7 @@ module Mutations
         item = Item.find(id)
   
         if item.update(attributes.to_h)
+          MartianLibrarySchema.subscriptions.trigger("itemUpdated", {}, item)
           { item: item }
         else
           { errors: item.errors }
